@@ -18,8 +18,10 @@ def about_page(request):
 
 def contact_page(request):
     context = {
-        "title": "Página de Contato",
-        "content": "Esta é a página de contato"
+        "title": "Contato",
+        "content": "Informe seus dados para contato"
     }
+    if request.method == 'POST':
+        print(request.POST)
     return render(request, "contact/contact_page.html", context)
     
