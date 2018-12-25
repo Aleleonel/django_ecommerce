@@ -59,7 +59,7 @@ def login_page(request):
             #print(request.user.is_authenticated)
             login(request, user)
             print("Login válido")
-            # redireciona para uma pagina de sucesso
+            #redireciona para uma pagina de sucesso
             return redirect("/")
         
         else:
@@ -76,10 +76,15 @@ def register_page(request):
         "form":form
     }
     if form.is_valid():
+        #Verificação no terminal
         print(form.cleaned_data)
-        username = form.cleaned_data.get("email")
+
+        username = form.cleaned_data.get("username")
+        email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
         new_user = User.objects.create_user(username, email, password)
+
+        #Verificação no terminal
         print(new_user)
     return render(request,"auth/register.html", context)
 
